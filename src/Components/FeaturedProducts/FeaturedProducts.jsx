@@ -45,7 +45,6 @@ export default function FeaturedProducts() {
     setList(wishItemIds);
   }
   useEffect(() => {
-    getCartItems();
     getWishItems();
     localStorage.removeItem("paymentMethod");
   }, []);

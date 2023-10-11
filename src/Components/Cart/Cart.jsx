@@ -23,6 +23,7 @@ export default function Cart() {
 
   async function getCart() {
     let response = await getLoggedUserCart();
+    setCartItems(response?.data?.numOfCartItems);
     setCart(response?.data);
     if (!cart) {
       setEmptyCart(true);
@@ -55,6 +56,7 @@ export default function Cart() {
     await getCart();
     setEmptyCart(true);
     setCartItems(null);
+    localStorage.removeItem("cartOwner");
   }
 
   return (

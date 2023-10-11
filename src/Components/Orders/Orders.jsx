@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import PulseLoader from "react-spinners/PulseLoader";
@@ -21,7 +21,14 @@ export default function Orders() {
 
     autoplay: true,
   };
-  let { cartOwner } = useContext(CartContext);
+  let { cartOwner, getLoggedUserCart, setCartItems } = useContext(CartContext);
+  async function getCart() {
+    let response = await getLoggedUserCart();
+    setCartItems(response?.data?.numOfCartItems);
+  }
+  useEffect(() => {
+    getCart();
+  }, []);
 
   function getUserOrder(cartOwner) {
     return axios.get(

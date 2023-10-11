@@ -9,16 +9,23 @@ import { Helmet } from "react-helmet";
 import { CartContext } from "../../Context/CartContext.js";
 
 export default function Home() {
-  let { getLoggedUserCart, setCartOwner } = useContext(CartContext);
+  let { getLoggedUserCart, setCartOwner, setCartItems, cartOwner } =
+    useContext(CartContext);
   async function getCartItems() {
     let response = await getLoggedUserCart();
-    localStorage.setItem("cartOwner", response?.data?.data?.cartOwner);
-    setCartOwner(response?.data?.data?.cartOwner);
+    if (response?.data?.status === "success") {
+      localStorage.setItem("cartOwner", response?.data?.data?.cartOwner);
+      setCartOwner(response?.data?.data?.cartOwner);
+      setCartItems(response?.data?.numOfCartItems);
+    } else {
+      localStorage.removeItem("cartOwner");
+      setCartOwner("");
+    }
   }
   useEffect(() => {
     getCartItems();
     localStorage.removeItem("paymentMethod");
-  }, []);
+  }, [cartOwner]);
   return (
     <div>
       <Helmet>
