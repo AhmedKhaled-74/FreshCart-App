@@ -17,7 +17,7 @@ export default function Footer() {
               />
             </div>
             <div className="col-md-3">
-              <button className="btn btn-success form-control">
+              <button className="btn bg-main text-white form-control">
                 Share Link
               </button>
             </div>
