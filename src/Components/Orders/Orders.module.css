@@ -1,0 +1,6 @@
+.noOrders {
+  @media (max-width: 50em) {
+    width: 60% !important;
+  }
+  width: 30% !important;
+}

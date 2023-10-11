@@ -1,13 +1,254 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+:root {
+  --main-color: #0aad0a;
+  --light-color: #f0f3f2;
+  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+  --font-family: "Encode Sans Expanded", sans-serif;
+  --rating-color: #ffc908;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: var(--font-family) !important;
+}
+
+.rating-color {
+  color: var(--rating-color);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+a,
+a:hover,
+a:focus {
+  transition: all 0.2s;
+  color: black !important;
+  text-decoration: none !important;
+  outline: none;
+}
+.product:hover {
+  box-shadow: var(--shadow);
+  outline: solid 1px var(--main-color);
+  border-radius: 4px;
+}
+@media (min-width: 62em) {
+  .product .btn {
+    transition: all 0.3s;
+    transform: translateY(150%);
+    opacity: 0;
+  }
+  .product:hover .btn,
+  .product:focus-within .btn {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.font-sm {
+  font-size: 14px;
+}
+.text-main {
+  color: var(--main-color);
+}
+.bg-main {
+  background-color: var(--main-color) !important;
+}
+.btn-main {
+  font-weight: 700;
+  border: 2px solid var(--main-color);
+  color: var(--main-color) !important;
+  background-color: white;
+  transition: all 0.25s;
+  &:hover {
+    border: 2px solid transparent;
+    color: white !important;
+    background-color: var(--main-color);
+  }
+}
+.bg-main-light {
+  background-color: var(--light-color) !important;
+}
+.not-allowed {
+  pointer-events: auto !important;
+  cursor: not-allowed !important;
+}
+.all-cart {
+  font-family: sans-serif;
+  color: white !important;
+  position: absolute;
+  z-index: 999999;
+  border-radius: 50%;
+  top: -40%;
+  left: 21%;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.btn-hover:hover {
+  background-color: #000 !important;
+}
+.add {
+  animation: addAnimate 0.7s ease-in-out alternate;
+}
+.remove {
+  animation: removeAnimate 0.7s ease-in-out alternate;
+}
+.max {
+  background-color: transparent;
+  left: 4px;
+
+  animation: maxAnimate 0.7s ease-in-out alternate infinite;
+}
+.disable input {
+  pointer-events: none;
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+.icon {
+  transition: all 0.25s;
+}
+
+@keyframes maxAnimate {
+  100% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes addAnimate {
+  100% {
+    color: var(--rating-color);
+  }
+}
+@keyframes removeAnimate {
+  100% {
+    color: red;
+  }
+}
+.mt-10 {
+  margin-top: 80px;
+}
+.detactor-stat {
+  z-index: 999;
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  box-shadow: var(--shadow);
+}
+.btn-actCart {
+  width: 20px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+.btn-clrCart,
+.btn-checkCart {
+  width: 180px;
+  font-size: 20px !important;
+
+  @media (max-width: 30em) {
+    width: 100px;
+    font-size: 14px !important;
+  }
+}
+.wish {
+  transition: all 0.25s;
+}
+.InWish {
+  color: var(--main-color) !important;
+  background-color: black !important;
+}
+.fasel {
+  background-color: #000;
+  width: 100%;
+  height: 1px;
+}
+.z-big {
+  z-index: 999999;
+}
+.foo {
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  z-index: 9999;
+  width: 400px;
+  @media (max-width: 30em) {
+    width: 250px;
+
+    left: 15%;
+  }
+}
+
+/********Verify*******/
+
+.code-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.code {
+  border-radius: 5px;
+  font-size: 56px;
+  height: 120px;
+  width: 75px;
+  border: 1px solid #eee;
+  margin: 1%;
+  text-align: center;
+  font-weight: 300;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.code::-webkit-outer-spin-button,
+.code::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.code:valid {
+  border-color: var(--main-color);
+  box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 37.5em) {
+  .code-container {
+    flex-wrap: wrap;
+  }
+  .code {
+    font-size: 52px;
+    height: 60px;
+
+    width: 44px;
+  }
+}
+@media (max-width: 25em) {
+  .code-container {
+    flex-wrap: wrap;
+  }
+  .code {
+    font-size: 32px;
+    height: 60px;
+
+    width: 28px;
+  }
+}
+.textsm {
+  @media (max-width: 40em) {
+    font-size: 12px !important;
+  }
+  line-height: 1.8;
+}
+.reload {
+  background-color: #ffc908;
+  color: black;
+  font-weight: 700;
+  &:hover {
+    color: white;
+    background-color: #ccc908;
+  }
 }
