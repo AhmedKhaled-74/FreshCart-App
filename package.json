@@ -2,7 +2,7 @@
   "homepage": "http://AhmedKhaled-74.github.io",
   "name": "react-04",
   "version": "0.1.0",
-  "private": false,
+  "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "",
     "@emotion/react": "^11.11.1",
