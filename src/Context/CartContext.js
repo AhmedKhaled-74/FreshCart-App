@@ -75,6 +75,14 @@ function updateProductQuantity(id, count) {
     .then((response) => response)
     .catch((error) => error);
 }
+function getCartOwner() {
+  return axios
+    .get(`https://ecommerce.routemisr.com/api/v1/auth/verifyToken`, {
+      headers,
+    })
+    .then((response) => response)
+    .catch((error) => error);
+}
 export default function CartContextProvider(props) {
   const initialPaymentMethod = localStorage.getItem("paymentMethod") || "";
   const initialCartOwner = localStorage.getItem("cartOwner") || "";
@@ -98,6 +106,7 @@ export default function CartContextProvider(props) {
         setCartOwner,
         CartItems,
         setCartItems,
+        getCartOwner,
       }}
     >
       {props.children}

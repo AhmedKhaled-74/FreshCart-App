@@ -1,5 +1,3 @@
-import React from "react";
-import Style from "./CategorySlider.module.css";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Slider from "react-slick";
@@ -50,10 +48,7 @@ export default function CategorySlider() {
   function getCategoriesData() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/categories");
   }
-  let { data, isLoading, isError } = useQuery(
-    "categorySliderImgs",
-    getCategoriesData
-  );
+  let { data } = useQuery("categorySliderImgs", getCategoriesData);
   let info = data?.data.data;
   return (
     <>

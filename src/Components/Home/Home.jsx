@@ -1,6 +1,4 @@
-import React, { useContext, useEffect } from "react";
-import Style from "./Home.module.css";
-
+import { useContext, useEffect } from "react";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts.jsx";
 import CategorySlider from "../CategorySlider/CategorySlider.jsx";
 import MainSlider from "../MainSlider/MainSlider.jsx";
@@ -9,14 +7,23 @@ import { Helmet } from "react-helmet";
 import { CartContext } from "../../Context/CartContext.js";
 
 export default function Home() {
-  let { getLoggedUserCart, setCartOwner, setCartItems, cartOwner } =
-    useContext(CartContext);
+  let {
+    getLoggedUserCart,
+    setCartOwner,
+    setCartItems,
+    cartOwner,
+    getCartOwner,
+  } = useContext(CartContext);
   async function getCartItems() {
     let response = await getLoggedUserCart();
-    if (response?.data?.status === "success") {
-      localStorage.setItem("cartOwner", response?.data?.data?.cartOwner);
-      setCartOwner(response?.data?.data?.cartOwner);
+    let resOwner = await getCartOwner();
+    if (
+      response?.data?.status === "success" &&
+      resOwner?.data?.message === "verified"
+    ) {
+      setCartOwner(resOwner?.data?.decoded?.id);
       setCartItems(response?.data?.numOfCartItems);
+      localStorage.setItem("cartOwner", resOwner?.data?.decoded?.id);
     } else {
       localStorage.removeItem("cartOwner");
       setCartOwner("");

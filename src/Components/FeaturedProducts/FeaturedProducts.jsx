@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import Style from "./FeaturedProducts.module.css";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { CounterContext } from "../../Context/CounterContext.js";
 import { useQuery } from "react-query";
@@ -13,13 +12,8 @@ export default function FeaturedProducts() {
   let { increase } = useContext(CounterContext);
   let { addToCart, getLoggedUserCart, setCartItems, setCartOwner } =
     useContext(CartContext);
-  let {
-    addToWish,
-    getLoggedUserWish,
-    removeWishItem,
-    setWishItems,
-    WishItems,
-  } = useContext(WishListContext);
+  let { addToWish, getLoggedUserWish, removeWishItem, setWishItems } =
+    useContext(WishListContext);
 
   const [List, setList] = useState([]);
   let navigate = useNavigate();
@@ -81,13 +75,9 @@ export default function FeaturedProducts() {
   function getFeaturedProducts() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/products");
   }
-  let { isError, isFetching, isLoading, data } = useQuery(
-    "featuredProducts",
-    getFeaturedProducts,
-    {
-      refetchInterval: 10000,
-    }
-  );
+  let { isLoading, data } = useQuery("featuredProducts", getFeaturedProducts, {
+    refetchInterval: 10000,
+  });
 
   return (
     <>

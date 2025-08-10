@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import Style from "./Categories.module.css";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../Redux/categoriesSlice.js";
 import PulseLoader from "react-spinners/PulseLoader";
 import { Helmet } from "react-helmet";
 
 export default function Categories() {
-  let { loading, isError, categories } = useSelector(
+  let { loading, categories } = useSelector(
     (state) => state.categories
   );
   let dispatch = useDispatch();

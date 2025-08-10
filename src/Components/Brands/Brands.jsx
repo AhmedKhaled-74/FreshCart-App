@@ -1,5 +1,3 @@
-import React from "react";
-import Style from "./Brands.module.css";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { PulseLoader } from "react-spinners";
@@ -9,13 +7,9 @@ export default function Brands() {
   function getBrands() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/brands");
   }
-  let { isError, isFetching, isLoading, data } = useQuery(
-    "featuredProducts",
-    getBrands,
-    {
-      refetchInterval: 10000,
-    }
-  );
+  let { data } = useQuery("featuredProducts", getBrands, {
+    refetchInterval: 10000,
+  });
   return (
     <>
       <Helmet>

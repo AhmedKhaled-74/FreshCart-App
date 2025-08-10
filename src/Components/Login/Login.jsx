@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import Style from "./Login.module.css";
+import { useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -85,7 +84,7 @@ export default function Register() {
           ""
         )}
         <form
-          className={`${inputStatus == "disable" ? "disable" : ""} py-4`}
+          className={`${inputStatus === "disable" ? "disable" : ""} py-4`}
           onSubmit={formik.handleSubmit}
         >
           <div className=" d-flex flex-column gap-4">

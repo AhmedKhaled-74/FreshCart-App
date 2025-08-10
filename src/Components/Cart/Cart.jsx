@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import Style from "./Cart.module.css";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../Context/CartContext.js";
 import PulseLoader from "react-spinners/PulseLoader";
 import ClearCartbtn from "../../assets/7841420_buy_cart_delete_trash_icon.svg";
@@ -15,7 +14,6 @@ export default function Cart() {
     ClearCart,
     setPaymentMethod,
     setCartItems,
-    CartItems,
   } = useContext(CartContext);
   let [cart, setCart] = useState(null);
   let [emptyCart, setEmptyCart] = useState(false);
@@ -66,7 +64,7 @@ export default function Cart() {
         <title>FreshCart-Cart</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
-      {cart ? (
+      {cart?.numOfCartItems > 0 ? (
         <div className="container mx-auto my-3 p-3 bg-main-light">
           <div className="d-flex align-items-start justify-content-between gap-3">
             <div>

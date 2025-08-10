@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import Style from "./address.module.css";
+import { useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { CartContext } from "../../Context/CartContext.js";
@@ -30,7 +29,7 @@ export default function Address() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [window.innerWidth]);
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,7 +49,7 @@ export default function Address() {
       }
     };
     fetchData();
-  }, [cartId]);
+  }, [cartId, getLoggedUserCart, navigate, setPaymentMethod]);
 
   async function handleAddressSubmit(cartId, values) {
     if (paymentMethod === "visa") {

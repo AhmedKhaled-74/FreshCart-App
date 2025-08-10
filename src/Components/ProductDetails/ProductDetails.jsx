@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import Style from "./ProductDetails.module.css";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import Slider from "react-slick";
@@ -17,8 +16,7 @@ export default function ProductDetails() {
     addToWish,
     getLoggedUserWish,
     removeWishItem,
-    setWishItems,
-    WishItems,
+    setWishItems 
   } = useContext(WishListContext);
   let { userToken } = useContext(UserContext);
   const [List, setList] = useState([]);

@@ -36,12 +36,11 @@ export default function WishList() {
       await getWishList();
     };
     fetchData();
-  }, []);
+  });
   function clearingWishList() {
     setWishList(null);
     setWishItems(null);
     setEmptyWishList(true);
-    console.log(emptyWishList);
   }
 
   return (
