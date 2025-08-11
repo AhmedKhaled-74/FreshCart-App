@@ -15,11 +15,13 @@ export default function NavBar() {
   const myButtonRef = useRef(null);
   useEffect(() => {
     async function fetchData() {
-      const cartResponse = await getLoggedUserCart();
-      const wishResponse = await getLoggedUserWish();
+      if (userToken) {
+        const cartResponse = await getLoggedUserCart();
+        const wishResponse = await getLoggedUserWish();
 
-      setCartItems(cartResponse?.data?.numOfCartItems);
-      setWishItems(wishResponse?.data?.count);
+        setCartItems(cartResponse?.data?.numOfCartItems);
+        setWishItems(wishResponse?.data?.count);
+      }
     }
 
     fetchData();

@@ -34,15 +34,15 @@ export default function Register() {
         values
       );
 
-      if (data.message === "success") {
-        localStorage.setItem("userToken", data.token);
-        setUserToken(data.token);
+      if (data?.message === "success") {
+        localStorage.setItem("userToken", data?.token);
+        setUserToken(data?.token);
         setInputStatus("enable");
         setisLoading(false);
         navigate("/");
       }
     } catch (error) {
-      setError(error.response?.data?.message || "An error occurred");
+      setError(error?.response?.data?.message || "An error occurred");
       window.scrollTo(0, 0);
       setInputStatus("enable");
       setisLoading(false);

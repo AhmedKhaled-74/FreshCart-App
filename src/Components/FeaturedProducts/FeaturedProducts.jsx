@@ -18,6 +18,7 @@ export default function FeaturedProducts() {
   const [List, setList] = useState([]);
   let navigate = useNavigate();
   let { userToken } = useContext(UserContext);
+  let token = localStorage.getItem("userToken");
   const handleToastCartClick = () => {
     navigate("/cart");
   };
@@ -39,7 +40,9 @@ export default function FeaturedProducts() {
     setList(wishItemIds);
   }
   useEffect(() => {
-    getWishItems();
+    if (token) {
+      getWishItems();
+    }
     localStorage.removeItem("paymentMethod");
   }, []);
   const showToast = (res) => {
@@ -113,7 +116,7 @@ export default function FeaturedProducts() {
                 <div className="d-flex gap-1">
                   <button
                     onClick={async () => {
-                      if (userToken) {
+                      if (token && userToken) {
                         increase();
                         await addProductToCart(product._id);
                         getCartItems();
@@ -127,10 +130,14 @@ export default function FeaturedProducts() {
                   </button>
                   <button
                     onClick={async () => {
-                      if (userToken && !List?.includes(product._id)) {
+                      if (token && userToken && !List?.includes(product._id)) {
                         await addProductToWish(product._id);
                         getWishItems();
-                      } else if (userToken && List?.includes(product._id)) {
+                      } else if (
+                        token &&
+                        userToken &&
+                        List?.includes(product._id)
+                      ) {
                         await removeProductFromWish(product._id);
                         getWishItems();
                       } else {

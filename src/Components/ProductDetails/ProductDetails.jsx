@@ -32,10 +32,10 @@ export default function ProductDetails() {
     const wishData = await response?.data;
     setWishItems(wishData?.count);
     const wishItemIds = await wishData?.data?.map((wish) => wish._id);
-    setList(wishItemIds);
+    setList(wishItemIds || []);
   }
   useEffect(() => {
-    getWishItems();
+    if (userToken) getWishItems();
   }, []);
   const showToast = (res) => {
     toast(res?.message, {
@@ -79,7 +79,10 @@ export default function ProductDetails() {
   function getProductDetails(id) {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
   }
-  let { data } = useQuery("productDetails", () => getProductDetails(id));
+  let { data } = useQuery(
+    "productDetails",
+    async () => await getProductDetails(id)
+  );
   let info = data?.data?.data;
   return (
     <>

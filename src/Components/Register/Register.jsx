@@ -37,8 +37,6 @@ export default function Register() {
         setisLoading(false);
         setInputStatus("enable");
       });
-    console.log(data);
-
     if (data.message === "success") {
       navigate("/login");
       setisLoading(false);

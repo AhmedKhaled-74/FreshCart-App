@@ -17,6 +17,7 @@ export default function Home() {
   async function getCartItems() {
     let response = await getLoggedUserCart();
     let resOwner = await getCartOwner();
+
     if (
       response?.data?.status === "success" &&
       resOwner?.data?.message === "verified"
@@ -30,7 +31,12 @@ export default function Home() {
     }
   }
   useEffect(() => {
-    getCartItems();
+    if (localStorage.getItem("userToken")) {
+      async function fetchData() {
+        await getCartItems();
+      }
+      fetchData();
+    }
     localStorage.removeItem("paymentMethod");
   }, [cartOwner]);
   return (
