@@ -11,21 +11,24 @@ export default function NavBar() {
   let { getLoggedUserWish, setWishItems, WishItems } =
     useContext(WishListContext);
   let { userToken, setUserToken } = useContext(UserContext);
+  let token = localStorage.getItem("userToken");
   let navigate = useNavigate();
   const myButtonRef = useRef(null);
   useEffect(() => {
-    async function fetchData() {
-      if (userToken) {
+    if (userToken) {
+      async function fetchData() {
         const cartResponse = await getLoggedUserCart();
         const wishResponse = await getLoggedUserWish();
 
         setCartItems(cartResponse?.data?.numOfCartItems);
         setWishItems(wishResponse?.data?.count);
       }
+      fetchData();
+    } else {
+      setCartItems([]);
+      setWishItems([]);
     }
-
-    fetchData();
-  }, []);
+  }, [userToken]);
 
   const [navOpen, setNavOpen] = useState(false);
   const closeNav = () => {
@@ -42,9 +45,10 @@ export default function NavBar() {
     localStorage.removeItem("userToken");
     localStorage.removeItem("cartOwner");
     setUserToken(null);
-    setCartOwner("");
-    setCartItems(null);
-    setWishItems(null);
+    setCartOwner(null);
+    setCartItems([]);
+    setWishItems([]);
+
     if (
       /\/cart|\/allorders|\/wishlist|\/address/.test(window.location.pathname)
     ) {

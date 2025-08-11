@@ -85,7 +85,7 @@ function getCartOwner() {
 }
 export default function CartContextProvider(props) {
   const initialPaymentMethod = localStorage.getItem("paymentMethod") || "";
-  const initialCartOwner = localStorage.getItem("cartOwner") || "";
+  const initialCartOwner = localStorage.getItem("cartOwner") || null;
   const [paymentMethod, setPaymentMethod] = useState(initialPaymentMethod);
   const [cartOwner, setCartOwner] = useState(initialCartOwner);
   const [CartItems, setCartItems] = useState(null);

@@ -37,9 +37,29 @@ export default function Register() {
       if (data?.message === "success") {
         localStorage.setItem("userToken", data?.token);
         setUserToken(data?.token);
+
+        // Set the headers for the new token
+        const authHeaders = { token: data?.token };
+
+        // 1️⃣ Refresh the cart for the logged-in user
+        const cartRes = await axios.get(
+          "https://ecommerce.routemisr.com/api/v1/cart",
+          { headers: authHeaders }
+        );
+        // Store the cart owner if needed
+        setCartOwner(cartRes?.data?.data?.cartOwner || null);
+        localStorage.setItem("cartOwner", cartRes?.data?.data?.cartOwner || "");
+
+        // 2️⃣ (Optional) Refresh wishlist/orders the same way
+        // await refreshWishlist(authHeaders);
+        // await refreshOrders(authHeaders);
+
         setInputStatus("enable");
         setisLoading(false);
+
+        // 3️⃣ Navigate home with updated data
         navigate("/");
+        window.location.reload();
       }
     } catch (error) {
       setError(error?.response?.data?.message || "An error occurred");

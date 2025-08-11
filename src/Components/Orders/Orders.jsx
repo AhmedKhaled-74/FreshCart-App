@@ -21,10 +21,19 @@ export default function Orders() {
 
     autoplay: true,
   };
-  let { cartOwner, getLoggedUserCart, setCartItems } = useContext(CartContext);
+  let {
+    cartOwner,
+    getLoggedUserCart,
+    setCartItems,
+    setCartOwner,
+    getCartOwner,
+  } = useContext(CartContext);
   async function getCart() {
     let response = await getLoggedUserCart();
+    let resOwner = await getCartOwner();
     setCartItems(response?.data?.numOfCartItems);
+    setCartOwner(resOwner?.data?.decoded?.id);
+    localStorage.setItem("cartOwner", resOwner?.data?.decoded?.id);
   }
   useEffect(() => {
     getCart();

@@ -5,6 +5,7 @@ import MainSlider from "../MainSlider/MainSlider.jsx";
 import Ops from "../Ops/Ops.jsx";
 import { Helmet } from "react-helmet";
 import { CartContext } from "../../Context/CartContext.js";
+import { UserContext } from "../../Context/UserContext.js";
 
 export default function Home() {
   let {
@@ -14,6 +15,7 @@ export default function Home() {
     cartOwner,
     getCartOwner,
   } = useContext(CartContext);
+  let { userToken } = useContext(UserContext);
   async function getCartItems() {
     let response = await getLoggedUserCart();
     let resOwner = await getCartOwner();
@@ -38,7 +40,7 @@ export default function Home() {
       fetchData();
     }
     localStorage.removeItem("paymentMethod");
-  }, [cartOwner]);
+  }, [userToken]);
   return (
     <div>
       <Helmet>
