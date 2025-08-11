@@ -58,7 +58,7 @@ export default function Register() {
         setisLoading(false);
 
         // 3️⃣ Navigate home with updated data
-        navigate("/");
+        navigate("/FreshCart-App");
         window.location.reload();
       }
     } catch (error) {
