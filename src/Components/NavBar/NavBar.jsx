@@ -52,7 +52,7 @@ export default function NavBar() {
     if (
       /\/cart|\/allorders|\/wishlist|\/address/.test(window.location.pathname)
     ) {
-      navigate("/");
+      navigate("/login");
     }
   }
   return (
