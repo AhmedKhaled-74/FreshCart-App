@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/FreshCart-App/static/css/main.13812e13.css",
-    "main.js": "/FreshCart-App/static/js/main.a5f3a547.js",
+    "main.js": "/FreshCart-App/static/js/main.d4f92de4.js",
     "static/media/blog-img-2.jpeg": "/FreshCart-App/static/media/blog-img-2.69e5e73301d9616ba8c6.jpeg",
     "static/media/blog-img-1.jpeg": "/FreshCart-App/static/media/blog-img-1.3e2f37267e1d1d5c8c75.jpeg",
     "static/media/fa-solid-900.ttf": "/FreshCart-App/static/media/fa-solid-900.d75e3fd1eb12e9bd6655.ttf",
@@ -28,10 +28,10 @@
     "static/media/7841420_buy_cart_delete_trash_icon.svg": "/FreshCart-App/static/media/7841420_buy_cart_delete_trash_icon.9ebf437bf3e851b5c40acb8f05d96f11.svg",
     "index.html": "/FreshCart-App/index.html",
     "main.13812e13.css.map": "/FreshCart-App/static/css/main.13812e13.css.map",
-    "main.a5f3a547.js.map": "/FreshCart-App/static/js/main.a5f3a547.js.map"
+    "main.d4f92de4.js.map": "/FreshCart-App/static/js/main.d4f92de4.js.map"
   },
   "entrypoints": [
     "static/css/main.13812e13.css",
-    "static/js/main.a5f3a547.js"
+    "static/js/main.d4f92de4.js"
   ]
 }
