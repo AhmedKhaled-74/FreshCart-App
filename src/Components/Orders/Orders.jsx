@@ -59,7 +59,7 @@ export default function Orders() {
               <img
                 src={NoOrders}
                 alt="No Orders yet"
-                className={` ${Style.noOrders} `}
+                className={` ${Style?.noOrders} `}
               />
               <h4 className="display-6 fw-bolder text-main">
                 You dont have any orders yet !
@@ -115,11 +115,11 @@ export default function Orders() {
                     <Slider {...settings}>
                       {order.cartItems.map((prod) => (
                         <img
-                          key={prod.product._id}
-                          src={prod.product.imageCover}
+                          key={prod?.product._id}
+                          src={prod?.product.imageCover}
                           height={150}
                           className="object-fit-cover"
-                          alt={prod.product.title}
+                          alt={prod?.product.title}
                         />
                       ))}
                     </Slider>
@@ -129,7 +129,7 @@ export default function Orders() {
                 <div className="col-lg-2">
                   <div>
                     Items: &nbsp;
-                    {order.cartItems.reduce(
+                    {order?.cartItems?.reduce(
                       (totalCount, prod) => totalCount + prod.count,
                       0
                     )}

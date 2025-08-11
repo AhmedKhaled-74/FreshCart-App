@@ -12,12 +12,8 @@ import { WishListContext } from "../../Context/WishListContext.js";
 export default function ProductDetails() {
   let { increase } = useContext(CounterContext);
   let { addToCart, getLoggedUserCart, setCartItems } = useContext(CartContext);
-  let {
-    addToWish,
-    getLoggedUserWish,
-    removeWishItem,
-    setWishItems 
-  } = useContext(WishListContext);
+  let { addToWish, getLoggedUserWish, removeWishItem, setWishItems } =
+    useContext(WishListContext);
   let { userToken } = useContext(UserContext);
   const [List, setList] = useState([]);
   let navigate = useNavigate();
@@ -35,7 +31,7 @@ export default function ProductDetails() {
     let response = await getLoggedUserWish();
     const wishData = await response?.data;
     setWishItems(wishData?.count);
-    const wishItemIds = await wishData?.data.map((wish) => wish._id);
+    const wishItemIds = await wishData?.data?.map((wish) => wish._id);
     setList(wishItemIds);
   }
   useEffect(() => {
@@ -83,42 +79,40 @@ export default function ProductDetails() {
   function getProductDetails(id) {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
   }
-  let { isLoading, data } = useQuery("productDetails", () =>
-    getProductDetails(id)
-  );
-  let info = data?.data.data;
+  let { data } = useQuery("productDetails", () => getProductDetails(id));
+  let info = data?.data?.data;
   return (
     <>
       {info ? (
         <>
           <Helmet>
             <meta charSet="utf-8" />
-            <title>{info.title}</title>
+            <title>{info?.title}</title>
             <link rel="canonical" href="http://mysite.com/example" />
           </Helmet>
           <div className="row py-2 g-4 align-items-center">
             <div className="col-md-4">
               <Slider {...settings}>
-                {info.images.map((img, index) => (
+                {info?.images.map((img, index) => (
                   <img
                     src={img}
                     key={index}
                     className="w-100"
-                    alt={info.title}
+                    alt={info?.title}
                   ></img>
                 ))}
               </Slider>
             </div>
             <div className="col-md-8 d-flex flex-column gap-1">
-              <h2 className="h4 fw-bolder mb-4">{info.title}</h2>
-              <p className="mb-4">{info.description}</p>
-              <h6 className="fw-bolder">{info.category.name}</h6>
+              <h2 className="h4 fw-bolder mb-4">{info?.title}</h2>
+              <p className="mb-4">{info?.description}</p>
+              <h6 className="fw-bolder">{info?.category?.name}</h6>
               <div className="d-flex justify-content-between  align-items-center">
-                <h6 className="fw-bolder">Price: {info.price} EGP</h6>
+                <h6 className="fw-bolder">Price: {info?.price} EGP</h6>
                 <span>
                   <i className="fas fa-star rating-color"></i>
-                  {info.ratingsAverage} &nbsp;
-                  <span className="small">({info.ratingsQuantity} Rated)</span>
+                  {info?.ratingsAverage} &nbsp;
+                  <span className="small">({info?.ratingsQuantity} Rated)</span>
                 </span>
               </div>
               <div className="d-flex gap-1">
@@ -126,7 +120,7 @@ export default function ProductDetails() {
                   onClick={async () => {
                     if (userToken) {
                       increase();
-                      await addProductToCart(info._id);
+                      await addProductToCart(info?._id);
                       getCartItems();
                     } else {
                       navigate("/login");
@@ -138,18 +132,18 @@ export default function ProductDetails() {
                 </button>
                 <button
                   onClick={async () => {
-                    if (userToken && !List.includes(info._id)) {
+                    if (userToken && !List.includes(info?._id)) {
                       increase();
-                      await addProductToWish(info._id);
+                      await addProductToWish(info?._id);
                       getWishItems();
-                    } else if (userToken && List.includes(info._id)) {
-                      await removeProductFromWish(info._id);
+                    } else if (userToken && List.includes(info?._id)) {
+                      await removeProductFromWish(info?._id);
                       getWishItems();
                     } else {
                       navigate("/login");
                     }
                   }}
-                  className={`${List.includes(info._id) ? "InWish" : ""}
+                  className={`${List.includes(info?._id) ? "InWish" : ""}
                     btn bg-main btn-hover text-white w-25 btn-sm mt-2 wish`}
                 >
                   <i className={`fa-solid fa-heart wish`}></i>

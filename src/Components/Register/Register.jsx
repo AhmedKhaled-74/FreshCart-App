@@ -27,11 +27,17 @@ export default function Register() {
     let { data } = await axios
       .post("https://ecommerce.routemisr.com/api/v1/auth/signup", values)
       .catch(({ response }) => {
-        setError(response.data.message);
+        setError(
+          response?.data?.message +
+            " - " +
+            (response?.data?.errors?.msg ?? "try again")
+        );
+
         window.scrollTo(0, 0);
         setisLoading(false);
         setInputStatus("enable");
       });
+    console.log(data);
 
     if (data.message === "success") {
       navigate("/login");

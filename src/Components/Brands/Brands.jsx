@@ -17,9 +17,9 @@ export default function Brands() {
         <title>FreshCart-Categories</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
-      {data?.data.data ? (
+      {data?.data?.data ? (
         <div className="row pt-5 g-4">
-          {data?.data.data.map((brand) => (
+          {data?.data?.data.map((brand) => (
             <div key={brand._id} className="col-4 col-md-2">
               <div className="brand cursor-pointer">
                 <a
